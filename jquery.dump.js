@@ -1,19 +1,21 @@
-/**
- * jquery.dump.js
- * @author Torkild Dyvik Olsen
- * @version 1.0
- * 
- * A simple debug function to gather information about an object.
- * Returns a nested tree with information.
- * 
- */
+//     jquery.dump.js
+
+//     (c) 2012 Torkild Dyvik Olsen
+//     This program may be freely distributed under the MIT license.
+
+// A simple debug function to dump information about an object. Returns a
+// string of a nested tree of the object dumped.
 (function($) {
 
+// Returns the dump of the current jQuery object (`this`).
 $.fn.dump = function() {
    return $.dump(this);
 }
 
+// Dumps any object passed as the only parameter.
 $.dump = function(object) {
+   // The recursion function, used to determine each object and it's children
+   // in the passed tree.
    var recursion = function(obj, level) {
       if(!level) level = 0;
       var dump = '', p = '';
@@ -91,6 +93,7 @@ $.dump = function(object) {
       return dump;
    }
    
+   // Returns the type of the object passed as the only parameter.
    var type = function(obj) {
       var type = typeof(obj);
       
@@ -147,19 +150,13 @@ $.dump = function(object) {
       return 'Unknown';
    }
    
+   // Start and return the recursion on the object
    return recursion(object);
 }
 
-function trim(str) {
-   return ltrim(rtrim(str));
-}
-
-function ltrim(str) {
-   return str.replace(new RegExp("^[\\s]+", "g"), "");
-}
-
-function rtrim(str) {
-   return str.replace(new RegExp("[\\s]+$", "g"), "");
-}
+// Trim strings
+function trim(str) { return ltrim(rtrim(str)); }
+function ltrim(str) { return str.replace(new RegExp("^[\\s]+", "g"), ""); }
+function rtrim(str) { return str.replace(new RegExp("[\\s]+$", "g"), ""); }
 
 })(jQuery);
