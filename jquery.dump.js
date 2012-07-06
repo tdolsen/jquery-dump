@@ -19,7 +19,7 @@ $.dump = function(object) {
       var dump = '', p = '';
       for(i = 0; i < level; i++) p += "\t";
       
-      t = type(obj);
+      var t = type(obj);
       switch(t) {
          case "string":
             return '"' + obj + '"';
@@ -34,7 +34,7 @@ $.dump = function(object) {
          case "array":
             dump += 'Array ( \n';
             $.each(obj, function(k,v) {
-               dump += p +'\t' + k + ' => ' + recursion(v, level + 1) + '\n';
+               dump += p + '\t' + k + ' => ' + recursion(v, level + 1) + '\n';
             });
             dump += p + ')';
             break;
